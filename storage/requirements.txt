@@ -19,6 +19,7 @@ logger==1.4
 logging-config==1.0.4
 MarkupSafe==2.0.1
 mypy-extensions==0.4.3
+mysql-connector-python==8.0.23
 openapi-schema-validator==0.1.5
 openapi-spec-validator==0.3.1
 pykafka==2.8.0
@@ -30,6 +31,7 @@ requests==2.26.0
 six==1.16.0
 SQLAlchemy==1.4.26
 sqlalchemy-orm==1.2.2
+swagger-ui-bundle==0.0.8
 tabulate==0.8.9
 typing-extensions==3.10.0.2
 typing-inspect==0.7.1
