@@ -1,0 +1,29 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  reciver:
+    image: reciever
+    ports:
+      - "8080:8080"
+    depends_on:
+      - "kafka"
+  storage:
+    image: storage
+    ports:
+      - "8090:8090"
+    depends_on:
+      - "kafka"    
+      - "db"
+  processing:
+    image: processing
+    network_mode: host
+    ports:
+      - "8100:8100"
+    depends_on:
+      - "storage"
+  audit_log:
+    image: audit
+    ports:
+      - "8200:8200"
+    depends_on:
+      "kafka"          
+         
