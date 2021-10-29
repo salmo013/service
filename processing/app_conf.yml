@@ -1,0 +1,9 @@
+version: 1
+datastore:
+ filename: data.json
+scheduler:
+ period_sec: 5
+eventstore:
+ url: http://localhost:8999/censor/get
+eventstore1:
+ url: http://localhost:8999/censor/getm

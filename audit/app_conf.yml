@@ -1,0 +1,9 @@
+version: 1
+eventstore1:
+ url: http://localhost:8999/censor/motion
+eventstore2:
+ url: http://localhost:8999/censor/door
+events:
+  hostname: 3.21.10.177 
+  port: 9092
+  topics: events

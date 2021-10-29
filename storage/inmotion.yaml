@@ -1,0 +1,163 @@
+openapi: 3.0.0
+
+
+info:
+  description: This API recieves readings from motion censors placed throughout the house
+  version: "1.0.0"
+  title: Inmotion API
+  contact:
+    email: lukesalmon13@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: admins
+    description: Secured Admin-only calls
+  - name: developers
+    description: Operations available to regular developers
+paths:
+  /censor/get:
+    get:
+      tags:
+        - devices
+      summary: gets new motion readings
+      operationId: app.get_motion_readings
+      description: Gets motion readings added after a timestamp
+      parameters:
+       - name: timestamp
+         in: query
+         description: Limits the number of items on a page
+         schema:
+          type: string
+          format: date-time
+          example: '2016-08-29 09:12:33.001Z'   
+      responses:
+        '200':
+          description: Successfully returned a list of motion events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    location:
+                      type: string
+                    item:
+                      type: string
+                    time:
+                      type: string
+                    state:
+                      type: boolean
+                    date_created:
+                      type: string
+                      format: date-time
+        '400':
+          description: Invalid request
+          content: 
+            application/json:
+              schema:
+               type: object
+               properties:
+                message:
+                  type: string          
+  /censor/getm:
+    get:
+      tags:
+        - devices
+      summary: gets new motion readings
+      operationId: app.get_move_motion_readings
+      description: Gets motion readings added after a timestamp
+      parameters:
+       - name: timestamp
+         in: query
+         description: Limits the number of items on a page
+         schema:
+          type: string
+          format: date-time
+          example: '2016-08-29 09:12:33.001Z'   
+      responses:
+        '200':
+          description: Successfully returned a list of motion events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    location:
+                      type: string
+                    item:
+                      type: string
+                    time:
+                      type: string
+                    action:
+                      type: boolean
+                    date_created:
+                      type: string
+                      format: date-time
+        '400':
+          description: Invalid request
+          content: 
+            application/json:
+              schema:
+               type: object
+               properties:
+                message:
+                  type: string                            
+components:
+  schemas:
+    motion:
+      type: object
+      required:
+        - location
+        - item
+        - time
+        - action
+      properties:
+        location:
+          type: string
+          format: utf-8
+          example: living room
+        item:
+          type: string
+          example: Couch
+        time:
+          type: string
+          format: date-time
+          example: '2016-08-29T09:12:33.001Z'
+        action:
+          type: boolean
+          example: true
+            
+    doormotion:
+      type: object
+      required:
+        - location
+        - item
+        - time
+        - state
+      properties:
+        location:
+          type: string
+          format: utf-8
+          example: living room
+        item:
+          type: string
+          example: Couch
+        time:
+          type: string
+          format: date-time
+          example: '2016-08-29T09:12:33.001Z'
+        state:
+          type: boolean
+          example: true
+# servers:
+#   # Added by API Auto Mocking Plugin
+#   - description: SwaggerHub API Auto Mocking
+#     url: https://virtserver.swaggerhub.com/salmo013/Inmotion/1.0.0

@@ -1,0 +1,57 @@
+openapi: 3.0.0
+info:
+  description: This API provides event stats
+  version: "1.0.0"
+  title: Stats API
+  contact:
+    email: lsalmon2@bcit.ca
+paths:
+  /stats:
+    get:
+      summary: Gets the event stats
+      operationId: app.get_stats
+      description: Gets motion and movement statistics
+      responses:
+        '200':
+          description: Successfully returned a list of motion events
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/ReadingStats'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+components:
+ schemas:
+  ReadingStats:
+   required:
+   - Total of event 1
+   - Total of event 2
+   - Couch sits
+   - Door open
+   - Last_update 
+   properties:
+    Total of event 1:
+      type: integer
+      example: 50
+    Total of event 2:
+      type: integer
+      example: 1
+    Couch sits:
+      type: integer
+      example: 1
+    Door open:
+      type: integer
+      example: 1
+    Last_update:
+      type: string
+      format: date-time
+      example: '2021-10-20T12:54:12Z'   

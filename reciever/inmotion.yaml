@@ -1,0 +1,104 @@
+openapi: 3.0.0
+
+info:
+  description: This API recieves readings from motion censors placed throughout the house
+  version: "1.0.0"
+  title: Inmotion API
+  contact:
+    email: lukesalmon13@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: admins
+    description: Secured Admin-only calls
+  - name: developers
+    description: Operations available to regular developers
+paths:
+  /censor/motion:
+    post:
+      tags:
+        - admins
+      summary: verifies movement in the house
+      operationId: open.movementDetection
+      description: Adds a entry into the system
+      responses:
+        '201':
+          description: motion detected
+        '400':
+          description: 'invalid input, object invalid'
+        '409':
+          description: an existing item already exists
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/motion'
+        description: motion to add
+  /censor/door:
+    post:
+      tags:
+        - admins
+      summary: verifies door status in the house
+      operationId: open.doorDetection
+      description: Adds a entry into the system
+      responses:
+        '201':
+          description: door status change
+        '400':
+          description: 'invalid input, object invalid'
+        '409':
+          description: an existing status already exists
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/doormotion'
+        description: door motion item to add      
+components:
+  schemas:
+    motion:
+      type: object
+      required:
+        - location
+        - item
+        - time
+        - action
+      properties:
+        location:
+          type: string
+          format: utf-8
+          example: living room
+        item:
+          type: string
+          example: Couch
+        time:
+          type: string
+          format: date-time
+          example: '2016-08-29T09:12:33.001Z'
+        action:
+          type: boolean
+          example: true
+            
+    doormotion:
+      type: object
+      required:
+        - location
+        - item
+        - time
+        - state
+      properties:
+        location:
+          type: string
+          format: utf-8
+          example: living room
+        item:
+          type: string
+          example: Couch
+        time:
+          type: string
+          format: date-time
+          example: '2016-08-29T09:12:33.001Z'
+        state:
+          type: boolean
+          example: true
