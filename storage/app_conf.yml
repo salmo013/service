@@ -2,10 +2,10 @@ version: 1
 datastore:
   user: API
   password: password
-  hostname: 3.21.10.177
+  hostname: localhost
   port: 3306
   db: events
 events:
-  hostname: 3.21.10.177
+  hostname: localhost
   port: 9092
   topic: events
