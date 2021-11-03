@@ -29,7 +29,7 @@ logger = logging.getLogger('basicLogger')
 #     return NoContent, response.status_code # NoContent means there is no response message
 
 def movementDetection(body):
-    client = KafkaClient(hosts='localhost:9092')
+    client = KafkaClient(hosts='3.21.10.177:9092')
     topic = client.topics[str.encode('events')]
     producer = topic.get_sync_producer()
     msg = { "type": "motion", "datetime" : datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S"), "payload": body }
@@ -50,7 +50,7 @@ def doorDetection(body):
     # logger.info(f'Recived response for {body["item"]} with a status {response.status_code}')
 
     # return NoContent, response.status_code  # NoContent means there is no response message
-    client = KafkaClient(hosts='localhost:9092')
+    client = KafkaClient(hosts='3.21.10.177:9092')
     topic = client.topics[str.encode('events')]
     producer = topic.get_sync_producer()
     msg = { "type": "doormotion", "datetime" : datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S"), "payload": body }
