@@ -1,0 +1,3 @@
+2021-11-03 17:36:50,143 - basicLogger - INFO - Connecting to DB. Hostname:localhost, Port:3306
+2021-11-03 17:36:50,215 - basicLogger - INFO - Connecting to DB. Hostname:localhost, Port:3306
+2021-11-03 17:36:52,396 - basicLogger - INFO - Message: {'type': 'motion', 'datetime': '2021-11-03T03:30:51', 'payload': {'action': True, 'item': 'Couch', 'location': 'gcacbagdfg', 'time': '2016-08-29T09:12:33.001Z'}}
