@@ -1,8 +1,8 @@
 version: 1
 eventstore1:
- url: http://localhost:8999/censor/motion
+ url: http://3.21.10.177:8999/censor/motion
 eventstore2:
- url: http://localhost:8999/censor/door
+ url: http://3.21.10.177:8999/censor/door
 events:
   hostname: localhost 
   port: 9092
