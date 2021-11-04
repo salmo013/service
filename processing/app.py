@@ -44,7 +44,7 @@ def populate_stats():
             for items in stats_dict:
                 example_stats[items] = stats_dict[items]['example']
                 #print(items,' ',stats_dict[items]['example'])
-            last_updated = example_stats['last_update']
+            last_updated = example_stats['Last_update']
 
     # read the stats
 
