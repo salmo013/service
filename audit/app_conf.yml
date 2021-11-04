@@ -4,6 +4,6 @@ eventstore1:
 eventstore2:
  url: http://3.21.10.177:8999/censor/door
 events:
-  hostname: localhost 
+  hostname: 3.21.10.177 
   port: 9092
   topics: events
