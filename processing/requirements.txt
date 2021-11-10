@@ -29,3 +29,4 @@ tzlocal~=2.0
 urllib3==1.26.7
 Werkzeug==1.0.1
 zope.interface==5.4.0
+flask-cors==3.0.10

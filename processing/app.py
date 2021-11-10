@@ -7,6 +7,7 @@ import logging.config
 import datetime 
 from connexion import NoContent
 from apscheduler.schedulers.background import BackgroundScheduler
+from flask_cors import CORS, cross_origin
 
 
 
@@ -130,6 +131,8 @@ def init_scheduler():
 
 
 app = connexion.FlaskApp(__name__, specification_dir='')
+CORS(app.app)
+app.app.config['CORS_HEADERS']= 'Content-Type'
 app.add_api("inmotion.yaml",strict_validation=True, validate_responses=True)
 if __name__ == "__main__":
     init_scheduler()
