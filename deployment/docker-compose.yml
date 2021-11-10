@@ -67,6 +67,14 @@ services:
     ports:
       - "8200:8200"
     depends_on:
-      - "kafka" 
+      - "kafka"
+  dashboard:
+    image: dashboard
+    ports:
+      - "3000:3000"
+    depends_on:
+      - "processing"
+      - "audit_log"
+     
 volumes:
   my-db:

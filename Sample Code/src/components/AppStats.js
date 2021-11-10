@@ -23,7 +23,7 @@ export default function AppStats() {
 		const interval = setInterval(() => getStats(), 2000); // Update every 2 seconds
 		return() => clearInterval(interval);
     }, [getStats]);
-
+    console.log(stats)
     if (error){
         return (<div className={"error"}>Error found when fetching from API</div>)
     } else if (isLoaded === false){
@@ -46,7 +46,7 @@ export default function AppStats() {
 							<td colspan="2">How many couch sits: {stats['Couch sits']}</td>
 						</tr>
 						<tr>
-							<td colspan="2">How many doors are open: {stats['Door open']}</td>
+							<td colspan="2">How many doors are open: {stats['Doors open']}</td>
 						</tr>
 					</tbody>
                 </table>
