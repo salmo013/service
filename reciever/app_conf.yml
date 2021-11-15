@@ -7,3 +7,7 @@ events:
   hostname: localhost 
   port: 9092
   topics: events
+connection:
+  tries: 15
+time:
+  sleep: 5   

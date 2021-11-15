@@ -6,6 +6,7 @@ import logging.config
 import datetime
 from connexion import NoContent
 from pykafka import KafkaClient
+import time
 
 with open('app_conf.yml', 'r') as f:
     app_config = yaml.safe_load(f.read())
@@ -19,6 +20,21 @@ logger = logging.getLogger('basicLogger')
 #def get_motion_readings(timestamp)
 #    response = requests.get(app_config['eventget1']['url'],json = body,headers=headers )
 
+####Lab 9#####################################
+attempts = 0
+max_attempts = app_config['connection']['tries']
+while attempts < max_attempts
+    try: 
+        client = KafkaClient(hosts='3.21.10.177:9092')
+        topic = client.topics[str.encode('events')]
+        #topic = client.topics[str.encode(app_config["events"]["topic"])]
+    except:
+        logger.error('failed to connect to kafka')
+        time.sleep(app_config['time']['sleep'])
+        attempts += 1
+        logger.info(f'trying to connect to kafka, number of attempts = {attempts}')
+
+####################################################
 
 # def movementDetection(body):
 #     logger.info(f'Recived event movement detection at {body["item"]}')
@@ -29,8 +45,8 @@ logger = logging.getLogger('basicLogger')
 #     return NoContent, response.status_code # NoContent means there is no response message
 
 def movementDetection(body):
-    client = KafkaClient(hosts='3.21.10.177:9092')
-    topic = client.topics[str.encode('events')]
+    #client = KafkaClient(hosts='3.21.10.177:9092')
+    #topic = client.topics[str.encode('events')]
     producer = topic.get_sync_producer()
     msg = { "type": "motion", "datetime" : datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S"), "payload": body }
     msg_str = json.dumps(msg)
@@ -48,15 +64,14 @@ def doorDetection(body):
     # #print(app_config['eventstore2']['url'])
     # response = requests.post(app_config['eventstore2']['url'], json=body, headers = headers)
     # logger.info(f'Recived response for {body["item"]} with a status {response.status_code}')
-
-    # return NoContent, response.status_code  # NoContent means there is no response message
-    client = KafkaClient(hosts='3.21.10.177:9092')
-    topic = client.topics[str.encode('events')]
-    producer = topic.get_sync_producer()
-    msg = { "type": "doormotion", "datetime" : datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S"), "payload": body }
-    msg_str = json.dumps(msg)
-    producer.produce(msg_str.encode('utf-8'))
-
+    
+        #client = KafkaClient(hosts='3.21.10.177:9092')
+        #topic = client.topics[str.encode('events')]
+        producer = topic.get_sync_producer()
+        msg = { "type": "doormotion", "datetime" : datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S"), "payload": body }
+        msg_str = json.dumps(msg)
+        producer.produce(msg_str.encode('utf-8'))
+            
     return 201
 
 

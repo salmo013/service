@@ -9,3 +9,7 @@ events:
   hostname: 3.21.10.177
   port: 9092
   topic: events
+connection:
+  tries: 15 
+time:
+  sleep: 5  
