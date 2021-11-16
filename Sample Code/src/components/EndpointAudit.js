@@ -11,11 +11,12 @@ export default function EndpointAudit(props) {
     const getAudit = () => {
         fetch(`http://ec2-3-21-10-177.us-east-2.compute.amazonaws.com:8200/${props.endpoint}?index=${rand_val}`)
             .then(res => res.json())
+                setIndex(rand_val);
             .then((result)=>{
 				console.log("Received Audit Results for " + props.endpoint)
                 setLog(result);
                 setIsLoaded(true);
-                setIndex(rand_val);
+                // setIndex(rand_val);
             },(error) =>{
                 setError(error)
                 setIsLoaded(true);
