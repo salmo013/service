@@ -38,6 +38,7 @@ def populate_stats():
 
     else:
         spec_yaml= 'inmotion.yaml'
+        logger.info(f'##################Getting Stats from yaml#####################')
         with open(spec_yaml, 'r') as f:
             data = yaml.load(f)
             stats_dict = data['components']['schemas']['ReadingStats']['properties']
