@@ -59,6 +59,7 @@ def get_motion_readings(timestamp,endtimestamp_datetime):
 
 def get_move_motion_readings(timestamp,endtimestamp_datetime):
     session = DB_SESSION()
+    logger.info(f'trying to get readings {timestamp}{endtimestamp_datetime}')
     timestamp_datetime = datetime.datetime.strptime(timestamp,"%Y-%m-%dT%H:%M:%SZ")
     endtimestamp_datetime = datetime.datetime.strptime(timestamp,"%Y-%m-%dT%H:%M:%SZ")
     readings = session.query(DoorMotion).filter(and_(Motion.date_created >= timestamp_datetime, Motion.date_created < endtimestamp_datetime))
