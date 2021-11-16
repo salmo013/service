@@ -83,3 +83,4 @@ services:
      
 volumes:
   my-db:
+  home/ubuntu/zookeeper/data:
