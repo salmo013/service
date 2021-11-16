@@ -85,8 +85,8 @@ def process_messages():
     max_attempts = app_config['connection']['tries']
     while attempts < max_attempts:
         try: 
-            client = KafkaClient(hosts=hostname)
-            topic = client.topics[str.encode(app_config["events"]["topic"])]
+            client = KafkaClient(hosts='3.21.10.177:9092')
+            topic = client.topics[str.encode('events')]
         except:
             logger.error('failed to connect to kafka')
         time.sleep(app_config['time']['sleep'])
