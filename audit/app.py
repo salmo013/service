@@ -22,8 +22,10 @@ def get_door_motion(index):
     """ Get motion Reading in History """
     hostname = "%s:%d" % (app_config["events"]["hostname"], 
     app_config["events"]["port"])
-    client = KafkaClient(hosts=hostname)
-    topic = client.topics[str.encode(app_config["events"]["topics"])]
+    #client = KafkaClient(hosts=hostname)
+    #topic = client.topics[str.encode(app_config["events"]["topics"])]
+    client = KafkaClient(hosts='3.21.10.177:9092')
+    topic = client.topics[str.encode('events')]
  # Here we reset the offset on start so that we retrieve
  # messages at the beginning of the message queue. 
  # To prevent the for loop from blocking, we set the timeout to
@@ -59,8 +61,10 @@ def get_motion(index):
     """ Get motion Reading in History """
     hostname = "%s:%d" % (app_config["events"]["hostname"], 
     app_config["events"]["port"])
-    client = KafkaClient(hosts=hostname)
-    topic = client.topics[str.encode(app_config["events"]["topics"])]
+    #client = KafkaClient(hosts=hostname)
+    #topic = client.topics[str.encode(app_config["events"]["topics"])]
+    client = KafkaClient(hosts='3.21.10.177:9092')
+    topic = client.topics[str.encode('events')]
  # Here we reset the offset on start so that we retrieve
  # messages at the beginning of the message queue. 
  # To prevent the for loop from blocking, we set the timeout to
