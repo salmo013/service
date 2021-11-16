@@ -30,9 +30,9 @@ while attempts < max_attempts:
         #topic = client.topics[str.encode(app_config["events"]["topic"])]
     except:
         logger.error('failed to connect to kafka')
-        time.sleep(app_config['time']['sleep'])
-        attempts += 1
-        logger.info(f'trying to connect to kafka, number of attempts = {attempts}')
+    time.sleep(app_config['time']['sleep'])
+    attempts += 1
+    logger.info(f'trying to connect to kafka, number of attempts = {attempts}')
 
 ####################################################
 
@@ -67,10 +67,10 @@ def doorDetection(body):
     
         #client = KafkaClient(hosts='3.21.10.177:9092')
         #topic = client.topics[str.encode('events')]
-        producer = topic.get_sync_producer()
-        msg = { "type": "doormotion", "datetime" : datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S"), "payload": body }
-        msg_str = json.dumps(msg)
-        producer.produce(msg_str.encode('utf-8'))
+    producer = topic.get_sync_producer()
+    msg = { "type": "doormotion", "datetime" : datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S"), "payload": body }
+    msg_str = json.dumps(msg)
+    producer.produce(msg_str.encode('utf-8'))
             
     return 201
 
