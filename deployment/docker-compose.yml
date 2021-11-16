@@ -7,7 +7,7 @@ services:
     hostname: zookeeper
     volumes:
       - type: bind
-        soucre: /home/ubuntu/zookeeper/data
+        source: /home/ubuntu/zookeeper/data
         target: /opt/zookeeper-3.4.13/data
   kafka:
     image: wurstmeister/kafka
