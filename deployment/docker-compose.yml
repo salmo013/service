@@ -6,7 +6,9 @@ services:
       - "2181"
     hostname: zookeeper
     volumes:
-      - home/ubuntu/zookeeper/data:/opt/zookeeper-3.4.13/data
+      - type: bind
+        soucre: /home/ubuntu/zookeeper/data
+        target: /opt/zookeeper-3.4.13/data
   kafka:
     image: wurstmeister/kafka
     command: [start-kafka.sh]
@@ -83,5 +85,4 @@ services:
      
 volumes:
   my-db:
-  data:
-  
+
