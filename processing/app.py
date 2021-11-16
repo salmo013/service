@@ -59,7 +59,7 @@ def populate_stats():
     
     ##### Need to grab last update in other sections #########
     #PARAMS = {'timestamp': last_updated}
-    PARAMS = {'timestamp': last_updated 'endtimestamp_datetime': time_string}
+    PARAMS = {'timestamp': last_updated, 'endtimestamp_datetime': time_string}
     #############PARAMS UPDATED IN LAB (#######################)
     # get requests from door motion
     response = requests.get(app_config['eventstore']['url'],params = PARAMS )

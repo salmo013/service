@@ -83,7 +83,7 @@ def process_messages():
     #lab 9 code###############################
     attempts = 0
     max_attempts = app_config['connection']['tries']
-    while attempts < max_attempts
+    while attempts < max_attempts:
         try: 
             client = KafkaClient(hosts=hostname)
             topic = client.topics[str.encode(app_config["events"]["topic"])]

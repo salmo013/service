@@ -23,7 +23,7 @@ logger = logging.getLogger('basicLogger')
 ####Lab 9#####################################
 attempts = 0
 max_attempts = app_config['connection']['tries']
-while attempts < max_attempts
+while attempts < max_attempts:
     try: 
         client = KafkaClient(hosts='3.21.10.177:9092')
         topic = client.topics[str.encode('events')]
