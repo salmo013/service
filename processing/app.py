@@ -107,7 +107,7 @@ def populate_stats():
 
 
 def get_stats():
-    logger.info('request processing')
+    logger.info('################request processing####################')
     if os.path.isfile(EVENT_FILE):
         #print('file exists')
         with open(EVENT_FILE, 'r') as jsonFile:
