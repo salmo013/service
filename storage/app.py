@@ -46,11 +46,11 @@ def get_motion_readings(timestamp,endtimestamp_datetime):
     endtimestamp_datetime = datetime.datetime.strptime(timestamp,"%Y-%m-%dT%H:%M:%SZ")
     # additional line
     readingsL = session.query(DoorMotion).filter(and_(DoorMotion.date_created >= timestamp_datetime, DoorMotion.date_created < endtimestamp_datetime ))
-    readings = session.query(DoorMotion).filter(DoorMotion.date_created > timestamp_datetime)
+    #readings = session.query(DoorMotion).filter(DoorMotion.date_created > timestamp_datetime)
     results_list = []
-    for reading in readings:
+    for reading in readingsL:
         results_list.append(reading.to_dict())
-    #print(readings,"#####################################")
+    print(results_list,"#####################################")
     # send one request
     #logger.info(f'{reading}###################################################')
     session.close()
@@ -67,9 +67,9 @@ def get_move_motion_readings(timestamp,endtimestamp_datetime):
     readingsL = session.query(Motion).filter(and_(Motion.date_created >= timestamp_datetime, Motion.date_created < endtimestamp_datetime))
     readings = session.query(Motion).filter(Motion.date_created > timestamp_datetime)
     results_list = []
-    for reading in readings:
+    for reading in readingsL:
         results_list.append(reading.to_dict())
-    #logger.info(f'{results_list}###################################################')    
+    logger.info(f'{results_list}###################################################')    
     #print(readings,"#####################################")
     # send one request
     session.close()
