@@ -115,7 +115,8 @@ def get_stats():
             jsonObject = json.load(jsonFile)
             response_dict = {'Total of event 1':jsonObject[0]['Total of event 1'] , 'Total of event 2': jsonObject[0]['Total of event 2'] ,'Couch sits': jsonObject[0]['Couch sits'],'Doors open': jsonObject[0]['Door open'] , 'Last_update': timestamp_datetime}
             logger.info('request has completed') 
-            #print('jsonObject')   
+            #print('jsonObject')
+            logger.info(f'###################################################{timestamp_datetime}')   
     else:
         error = "file does not exist"
         return error , 404 
