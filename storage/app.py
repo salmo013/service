@@ -69,7 +69,7 @@ def get_move_motion_readings(timestamp,endtimestamp_datetime):
     results_list = []
     for reading in readingsL:
         results_list.append(reading.to_dict())
-    logger.info(f'{results_list}###################################################')    
+    #logger.info(f'{results_list}###################################################')    
     #print(readings,"#####################################")
     # send one request
     session.close()
