@@ -22,9 +22,9 @@ logger = logging.getLogger('basicLogger')
 
 EVENT_FILE = app_config['datastore']['filename']
 
-# now = datetime.datetime.now()
-# time_string = now.strftime('%Y-%m-%dT%H:%M:%SZ')
-# timestamp_datetime = datetime.datetime.strptime(time_string,"%Y-%m-%dT%H:%M:%SZ")
+now = datetime.datetime.now()
+time_string = now.strftime('%Y-%m-%dT%H:%M:%SZ')
+timestamp_datetime = datetime.datetime.strptime(time_string,"%Y-%m-%dT%H:%M:%SZ")
 
 
 def populate_stats():
@@ -36,6 +36,7 @@ def populate_stats():
         with open(EVENT_FILE) as jsonFile:
             jsonObject = json.load(jsonFile)
         last_updated = jsonObject[0]['Last_update']
+
         logger.info(f'{last_updated} taken from the start of processing')
 
 
@@ -63,13 +64,15 @@ def populate_stats():
     
     ##### Need to grab last update in other sections #########
     #PARAMS = {'timestamp': last_updated}
-    PARAMS = {'timestamp': last_updated, 'endtimestamp_datetime': time_string}
+    params = {'timestamp': last_updated, 'endtimestamp_datetime': time_string}
     #############PARAMS UPDATED IN LAB (#######################)
+
+    logger.info(f'{params} ')
     # get requests from door motion
-    response = requests.get(app_config['eventstore']['url'],params = PARAMS )
+    response = requests.get(app_config['eventstore']['url'],params = params )
 
     #get requests from movement motion
-    response2 = requests.get(app_config['eventstore1']['url'],params = PARAMS )
+    response2 = requests.get(app_config['eventstore1']['url'],params = params )
     #response_motion = requests.get(app_config['eventstore1']['url'],params = PARAMS )
     
     #print(response2.json())
@@ -110,7 +113,7 @@ def populate_stats():
 
 
 def get_stats():
-    logger.info('################request processing####################')
+    #logger.info('################request processing####################')
     if os.path.isfile(EVENT_FILE):
         #print('file exists')
         with open(EVENT_FILE, 'r') as jsonFile:
@@ -123,7 +126,7 @@ def get_stats():
             response_dict = {'Total of event 1':jsonObject[0]['Total of event 1'] , 'Total of event 2': jsonObject[0]['Total of event 2'] ,'Couch sits': jsonObject[0]['Couch sits'],'Doors open': jsonObject[0]['Door open'] , 'Last_update': timestamp_datetime}
             logger.info('request has completed') 
             #print('jsonObject')
-            logger.info(f'###################################################{timestamp_datetime}')
+            logger.info(f'{jsonObject}')
             return response_dict, 200   
     else:
         error = "file does not exist"
