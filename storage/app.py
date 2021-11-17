@@ -40,13 +40,13 @@ DB_SESSION = sessionmaker(bind=DB_ENGINE)
 
 def get_motion_readings(timestamp,endtimestamp_datetime):
     session = DB_SESSION()
-    logger.info(f'trying to get readings {timestamp}{endtimestamp_datetime}######################################')
+    logger.info(f'trying to get readings {timestamp}   {endtimestamp_datetime}######################################')
     timestamp_datetime = datetime.datetime.strptime(timestamp,"%Y-%m-%dT%H:%M:%SZ")
     #new line add LAB9
     endtimestamp_datetime = datetime.datetime.strptime(timestamp,"%Y-%m-%dT%H:%M:%SZ")
     # additional line
-    readings = session.query(DoorMotion).filter(and_(DoorMotion.date_created >= timestamp_datetime, DoorMotion.date_created < endtimestamp_datetime ))
-    #readings = session.query(Motion).filter(DoorMotion.date_created > timestamp_datetime)
+    #readings = session.query(DoorMotion).filter(and_(DoorMotion.date_created >= timestamp_datetime, DoorMotion.date_created < endtimestamp_datetime ))
+    readings = session.query(Motion).filter(DoorMotion.date_created > timestamp_datetime)
     results_list = []
     for reading in readings:
         results_list.append(reading.to_dict())
@@ -64,8 +64,8 @@ def get_move_motion_readings(timestamp,endtimestamp_datetime):
     logger.info(f'trying to get readings {timestamp}{endtimestamp_datetime}######################################')
     timestamp_datetime = datetime.datetime.strptime(timestamp,"%Y-%m-%dT%H:%M:%SZ")
     endtimestamp_datetime = datetime.datetime.strptime(timestamp,"%Y-%m-%dT%H:%M:%SZ")
-    readings = session.query(DoorMotion).filter(and_(Motion.date_created >= timestamp_datetime, Motion.date_created < endtimestamp_datetime))
-    #readings = session.query(Motion).filter(Motion.date_created > timestamp_datetime)
+    #readings = session.query(DoorMotion).filter(and_(Motion.date_created >= timestamp_datetime, Motion.date_created < endtimestamp_datetime))
+    readings = session.query(Motion).filter(Motion.date_created > timestamp_datetime)
     results_list = []
     for reading in readings:
         results_list.append(reading.to_dict())
