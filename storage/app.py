@@ -45,14 +45,14 @@ def get_motion_readings(timestamp,endtimestamp_datetime):
     #new line add LAB9
     endtimestamp_datetime = datetime.datetime.strptime(timestamp,"%Y-%m-%dT%H:%M:%SZ")
     # additional line
-    #readings = session.query(DoorMotion).filter(and_(DoorMotion.date_created >= timestamp_datetime, DoorMotion.date_created < endtimestamp_datetime ))
+    readingsL = session.query(DoorMotion).filter(and_(DoorMotion.date_created >= timestamp_datetime, DoorMotion.date_created < endtimestamp_datetime ))
     readings = session.query(Motion).filter(DoorMotion.date_created > timestamp_datetime)
     results_list = []
     for reading in readings:
         results_list.append(reading.to_dict())
     #print(readings,"#####################################")
     # send one request
-    logger.info(f'{results_list}###################################################')
+    logger.info(f'{readingsL}###################################################')
     session.close()
 
     #logger.info("Query for Blood motion readings after %s returns %d results" %
@@ -64,7 +64,7 @@ def get_move_motion_readings(timestamp,endtimestamp_datetime):
     logger.info(f'trying to get readings {timestamp}{endtimestamp_datetime}######################################')
     timestamp_datetime = datetime.datetime.strptime(timestamp,"%Y-%m-%dT%H:%M:%SZ")
     endtimestamp_datetime = datetime.datetime.strptime(timestamp,"%Y-%m-%dT%H:%M:%SZ")
-    #readings = session.query(DoorMotion).filter(and_(Motion.date_created >= timestamp_datetime, Motion.date_created < endtimestamp_datetime))
+    readingsL = session.query(Motion).filter(and_(Motion.date_created >= timestamp_datetime, Motion.date_created < endtimestamp_datetime))
     readings = session.query(Motion).filter(Motion.date_created > timestamp_datetime)
     results_list = []
     for reading in readings:
