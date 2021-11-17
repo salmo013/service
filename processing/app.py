@@ -24,7 +24,7 @@ EVENT_FILE = app_config['datastore']['filename']
 
 now = datetime.datetime.now()
 time_string = now.strftime('%Y-%m-%dT%H:%M:%SZ')
-
+timestamp_datetime = datetime.datetime.strptime(time_string,"%Y-%m-%dT%H:%M:%SZ")
 
 
 def populate_stats():
@@ -113,7 +113,7 @@ def get_stats():
         #print('file exists')
         with open(EVENT_FILE, 'r') as jsonFile:
             jsonObject = json.load(jsonFile)
-            response_dict = {'Total of event 1':jsonObject[0]['Total of event 1'] , 'Total of event 2': jsonObject[0]['Total of event 2'] ,'Couch sits': jsonObject[0]['Couch sits'],'Doors open': jsonObject[0]['Door open'] , 'Last_update': time_string}
+            response_dict = {'Total of event 1':jsonObject[0]['Total of event 1'] , 'Total of event 2': jsonObject[0]['Total of event 2'] ,'Couch sits': jsonObject[0]['Couch sits'],'Doors open': jsonObject[0]['Door open'] , 'Last_update': timestamp_datetime}
             logger.info('request has completed') 
             #print('jsonObject')   
     else:
