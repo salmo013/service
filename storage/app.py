@@ -89,6 +89,7 @@ def process_messages():
             client = KafkaClient(hosts='3.21.10.177:9092')
             topic = client.topics[str.encode('events')]
             logger.info(f'##################connected to kafka#####################')
+            attempts = 15
         except:
             logger.error('failed to connect to kafka')
         time.sleep(15)

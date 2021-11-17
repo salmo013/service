@@ -27,6 +27,7 @@ while attempts < max_attempts:
     try: 
         client = KafkaClient(hosts='3.21.10.177:9092')
         topic = client.topics[str.encode('events')]
+        attempts = 15
         #topic = client.topics[str.encode(app_config["events"]["topic"])]
     except:
         logger.error('failed to connect to kafka')
