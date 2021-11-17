@@ -65,6 +65,7 @@ def get_move_motion_readings(timestamp,endtimestamp_datetime):
     timestamp_datetime = datetime.datetime.strptime(timestamp,"%Y-%m-%dT%H:%M:%SZ")
     endtimestamp_datetime = datetime.datetime.strptime(timestamp,"%Y-%m-%dT%H:%M:%SZ")
     readingsL = session.query(Motion).filter(and_(Motion.date_created >= timestamp_datetime, Motion.date_created < endtimestamp_datetime))
+    # the below query works the above returns nothing
     readings = session.query(Motion).filter(Motion.date_created > timestamp_datetime)
     results_list = []
     for reading in readingsL:

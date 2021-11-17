@@ -56,8 +56,11 @@ def populate_stats():
 
 
     # current time parameter
-    now = datetime.datetime.now()
-    time_string = now.strftime('%Y-%m-%dT%H:%M:%SZ')
+    #now = datetime.datetime.now()
+    #time_string = now.strftime('%Y-%m-%dT%H:%M:%SZ')
+    ################
+    time_string = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S") + "Z"
+    ###############
     #print(last_updated)
     #print(time_string)
     # using request.get to get the data from database
