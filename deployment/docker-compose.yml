@@ -82,6 +82,7 @@ services:
     volumes:
       - /home/ubuntu/config/processing:/config
       - /home/ubuntu/logs:/logs
+      - processing-db:/data/data.json
     depends_on:
       - "storage"
   audit:
@@ -105,4 +106,5 @@ services:
      
 volumes:
   my-db:
+  processing-db:
 
