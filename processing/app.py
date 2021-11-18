@@ -42,7 +42,8 @@ def populate_stats():
 
     """ Periodically update stats """
     logger.info(f'Start processing')
-    if os.path.isfile(EVENT_FILE):
+    #if os.path.isfile(EVENT_FILE):
+    if os.path.exists(EVENT_FILE):
         print('file exists')
         with open(EVENT_FILE) as jsonFile:
             jsonObject = json.load(jsonFile)
@@ -132,7 +133,8 @@ def populate_stats():
 
 def get_stats():
     #logger.info('################request processing####################')
-    if os.path.isfile(EVENT_FILE):
+    #if os.path.isfile(EVENT_FILE):
+    if os.path.exists(EVENT_FILE):
         #print('file exists')
         with open(EVENT_FILE, 'r') as jsonFile:
             
