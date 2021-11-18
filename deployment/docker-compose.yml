@@ -53,7 +53,7 @@ services:
 # Names our volume
   reciver:
     image: reciever
-    enviroment: 
+    environment: 
       - TARGET_ENV=test
     volumes:
       - /home/ubuntu/service/reciever:/config    
@@ -63,6 +63,10 @@ services:
       - "kafka"
   storage:
     image: storage
+    environment: 
+      - TARGET_ENV=test
+    volumes:
+      - /home/ubuntu/service/storage:/config
     ports:
       - "8999:8999"
     depends_on:
@@ -71,10 +75,18 @@ services:
   processing:
     image: processing
     network_mode: host
+    environment: 
+      - TARGET_ENV=test
+    volumes:
+      - /home/ubuntu/service/processing:/config
     depends_on:
       - "storage"
   audit:
     image: audit
+    environment: 
+      - TARGET_ENV=test
+    volumes:
+      - /home/ubuntu/service/audit:/config
     ports:
       - "8200:8200"
     depends_on:
