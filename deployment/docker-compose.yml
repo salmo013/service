@@ -53,6 +53,10 @@ services:
 # Names our volume
   reciver:
     image: reciever
+    enviroment: 
+      - TARGET_ENV=test
+    volumes:
+      - /home/ubuntu/service/reciever:/config    
     ports:
       - "8080:8080"
     depends_on:
