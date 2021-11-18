@@ -56,10 +56,10 @@ def populate_stats():
 
 
     # current time parameter
-    #now = datetime.datetime.now()
-    #time_string = now.strftime('%Y-%m-%dT%H:%M:%SZ')
+    now = datetime.datetime.now()
+    time_string = now.strftime('%Y-%m-%dT%H:%M:%SZ')
     ################
-    time_string = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S") + "Z"
+    #time_string = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S") + "Z"
     ###############
     #print(last_updated)
     #print(time_string)
@@ -69,13 +69,17 @@ def populate_stats():
     #PARAMS = {'timestamp': last_updated}
     params = {'timestamp': last_updated, 'endtimestamp_datetime': time_string}
     #############PARAMS UPDATED IN LAB (#######################)
-
-    logger.info(f'{params} ')
+    url1=app_config['eventstore']['url']
+    url2=app_config['eventstore1']['url']
+    #logger.info(f'{params} ')
+    response = requests.get(f'{url1}?timestamp={last_updated}&endtimestamp_datetime={time_string}')
+    response2 = requests.get(f'{url2}?timestamp={last_updated}&endtimestamp_datetime={time_string}')
+    ####################################################
     # get requests from door motion
-    response = requests.get(app_config['eventstore']['url'],params = params )
+    #response = requests.get(app_config['eventstore']['url'],params = params )
 
     #get requests from movement motion
-    response2 = requests.get(app_config['eventstore1']['url'],params = params )
+    #response2 = requests.get(app_config['eventstore1']['url'],params = params )
     #response_motion = requests.get(app_config['eventstore1']['url'],params = PARAMS )
     
     #print(response2.json())
