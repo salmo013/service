@@ -57,7 +57,7 @@ services:
       - TARGET_ENV=test
     volumes:
       - /home/ubuntu/config/reciever:/config
-      - /home/ubuntu/logs:/log    
+      - /home/ubuntu/logs:/logs    
     ports:
       - "8080:8080"
     depends_on:
@@ -68,7 +68,7 @@ services:
       - TARGET_ENV=test
     volumes:
       - /home/ubuntu/config/storage:/config
-      - /home/ubuntu/logs:/log
+      - /home/ubuntu/logs:/logs
     ports:
       - "8999:8999"
     depends_on:
@@ -90,7 +90,7 @@ services:
       - TARGET_ENV=test
     volumes:
       - /home/ubuntu/config/audit:/config
-      - /home/ubuntu/logs:/log
+      - /home/ubuntu/logs:/logs
     ports:
       - "8200:8200"
     depends_on:
