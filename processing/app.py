@@ -45,8 +45,13 @@ def populate_stats():
     #if os.path.isfile(EVENT_FILE):
     if os.path.exists(EVENT_FILE):
         print('file exists')
-        with open(EVENT_FILE) as jsonFile:
-            jsonObject = json.load(jsonFile)
+        # with open(EVENT_FILE) as jsonFile:
+        #     jsonObject = json.load(jsonFile)
+        # last_updated = jsonObject[0]['Last_update']
+
+        # logger.info(f'{last_updated} taken from the start of processing')
+        jsonFile = open(EVENT_FILE)
+        jsonObject = json.load(jsonFile)
         last_updated = jsonObject[0]['Last_update']
 
         logger.info(f'{last_updated} taken from the start of processing')
@@ -120,9 +125,13 @@ def populate_stats():
 
         # write if statement
         if total1 + total2 > 0:
-            with open(EVENT_FILE, "w") as outfile:
-                outfile.write(json_object)
-                logger.debug(json_object)
+            # with open(EVENT_FILE, "w") as outfile:
+            #     outfile.write(json_object)
+            #     logger.debug(json_object)
+            outfile = open(EVENT_FILE, "w") 
+            outfile.write(json_object)
+            logger.debug(json_object)
+            outfile.close()
 
         logger.info('end of processing')
         
@@ -136,18 +145,31 @@ def get_stats():
     #if os.path.isfile(EVENT_FILE):
     if os.path.exists(EVENT_FILE):
         #print('file exists')
-        with open(EVENT_FILE, 'r') as jsonFile:
+        #with open(EVENT_FILE, 'r') as jsonFile:
             
-            now = datetime.datetime.now()
-            time_string = now.strftime('%Y-%m-%dT%H:%M:%SZ')
-            timestamp_datetime = datetime.datetime.strptime(time_string,"%Y-%m-%dT%H:%M:%SZ")
+            # now = datetime.datetime.now()
+            # time_string = now.strftime('%Y-%m-%dT%H:%M:%SZ')
+            # timestamp_datetime = datetime.datetime.strptime(time_string,"%Y-%m-%dT%H:%M:%SZ")
 
-            jsonObject = json.load(jsonFile)
-            response_dict = {'Total of event 1':jsonObject[0]['Total of event 1'] , 'Total of event 2': jsonObject[0]['Total of event 2'] ,'Couch sits': jsonObject[0]['Couch sits'],'Doors open': jsonObject[0]['Door open'] , 'Last_update': jsonObject[0]['Last_update']}
-            logger.info('request has completed') 
+            # jsonObject = json.load(jsonFile)
+            # response_dict = {'Total of event 1':jsonObject[0]['Total of event 1'] , 'Total of event 2': jsonObject[0]['Total of event 2'] ,'Couch sits': jsonObject[0]['Couch sits'],'Doors open': jsonObject[0]['Door open'] , 'Last_update': jsonObject[0]['Last_update']}
+            # logger.info('request has completed') 
+            # #print('jsonObject')
+            # logger.info(f'{jsonObject}')
+            # return response_dict, 200 
+        jsonFile =  open(EVENT_FILE, 'r')
+        now = datetime.datetime.now()
+        time_string = now.strftime('%Y-%m-%dT%H:%M:%SZ')
+        timestamp_datetime = datetime.datetime.strptime(time_string,"%Y-%m-%dT%H:%M:%SZ")
+
+        jsonObject = json.load(jsonFile)
+        response_dict = {'Total of event 1':jsonObject[0]['Total of event 1'] , 'Total of event 2': jsonObject[0]['Total of event 2'] ,'Couch sits': jsonObject[0]['Couch sits'],'Doors open': jsonObject[0]['Door open'] , 'Last_update': jsonObject[0]['Last_update']}
+        logger.info('request has completed') 
             #print('jsonObject')
-            logger.info(f'{jsonObject}')
-            return response_dict, 200   
+        logger.info(f'{jsonObject}')
+        jsonFile.close()
+        return response_dict, 200 
+             
     else:
         error = "file does not exist"
         return error , 404 
