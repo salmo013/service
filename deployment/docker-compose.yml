@@ -82,7 +82,7 @@ services:
     volumes:
       - /home/ubuntu/config/processing:/config
       - /home/ubuntu/logs:/logs
-      - processing-db:/data/data.json
+      - processing-db:/data
     depends_on:
       - "storage"
   audit:
