@@ -119,18 +119,18 @@ services:
     image: nginx:latest
 # Connects the conf file of the container to the conf file in our folder volumes:
     volumes:
-     -	/home/ubuntu/nginx/nginx.conf:/etc/nginx/nginx.conf:ro 
+     - /home/ubuntu/nginx/nginx.conf:/etc/nginx/nginx.conf:ro 
     depends_on:
-      -	"receiver"
-      -	"storage"
-      -	"processing"
-      -	"audit"
-      -	"dashboard"
+     - "receiver"
+     - "storage"
+     - "processing"
+     - "audit"
+     - "dashboard"
     ports:
 # Connects the port 80 of the nginx container to localhost:80 or localhost ports:
-      - "80:80"
+     - "80:80"
     networks:
-      -	"api.network"
+     -	"api.network"
 
 networks:
   api.network:    
