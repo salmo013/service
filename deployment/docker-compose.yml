@@ -51,7 +51,7 @@ services:
     volumes:
       - my-db:/var/lib/mysql
 # Names our volume
-  reciver:
+  reciever:
     image: reciever
     environment: 
       - TARGET_ENV=test
