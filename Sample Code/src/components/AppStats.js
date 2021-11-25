@@ -8,7 +8,7 @@ export default function AppStats() {
 
 	const getStats = () => {
 	
-        fetch(`http://processing/stats`)
+        fetch(`http://nginx/processing/stats`)
             .then(res => res.json())
             .then((result)=>{
 				console.log("Received Stats")
