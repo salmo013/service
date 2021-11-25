@@ -8,7 +8,7 @@ export default function AppStats() {
 
 	const getStats = () => {
 	
-        fetch(`http://ec2-3-21-10-177.us-east-2.compute.amazonaws.com:8100/stats`)
+        fetch(`http://processing/stats`)
             .then(res => res.json())
             .then((result)=>{
 				console.log("Received Stats")
