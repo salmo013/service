@@ -52,10 +52,9 @@ def populate_stats():
         logger.info(f'{last_updated} taken from the start of processing')
         total1 = jsonObject[0]['Total of event 1']
         total2 = jsonObject[0]['Total of event 2']
-
+        logger.info(f'value to add{total2}')
     else:
         spec_yaml= 'inmotion.yaml'
-        logger.info(f'##################Getting Stats from yaml#####################')
         with open(spec_yaml, 'r') as f:
             data = yaml.load(f)
             stats_dict = data['components']['schemas']['ReadingStats']['properties']
@@ -78,6 +77,7 @@ def populate_stats():
     #get requests from movement motion
     response2 = requests.get(app_config['eventstore1']['url'],params = params )
     # calculate the events recieved
+    logger.info(f'Log Conf File: {total1} + {len(response.json())}##############################################')
     total1 += len(response.json())
     total2 += len(response2.json())
     logger.info(f'events recieved {total1 + total2}')
