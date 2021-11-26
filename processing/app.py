@@ -37,8 +37,7 @@ now = datetime.datetime.now()
 time_string = now.strftime('%Y-%m-%dT%H:%M:%SZ')
 timestamp_datetime = datetime.datetime.strptime(time_string,"%Y-%m-%dT%H:%M:%SZ")
 
-total1 = 0
-total2 = 0
+
 
 def populate_stats():
 
