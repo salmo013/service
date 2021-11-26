@@ -66,6 +66,7 @@ def populate_stats():
             last_updated = example_stats['Last_update']
             total1 = example_stats['Total of event 1']
             total2 = example_stats['Total of event 2']
+
     # current time parameter
     now = datetime.datetime.now()
     time_string = now.strftime('%Y-%m-%dT%H:%M:%SZ')
@@ -77,8 +78,8 @@ def populate_stats():
     #get requests from movement motion
     response2 = requests.get(app_config['eventstore1']['url'],params = params )
     # calculate the events recieved
-    total1 =+ len(response.json())
-    total2 =+ len(response2.json())
+    total1 += len(response.json())
+    total2 += len(response2.json())
     logger.info(f'events recieved {total1 + total2}')
     #print(response.json())
     if response.status_code != 200:
