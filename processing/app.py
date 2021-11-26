@@ -133,6 +133,8 @@ def populate_stats():
             # outfile.write(json_object)
             # logger.debug(json_object)
             # outfile.close()
+        total1= total1
+        total2= total2    
 
         logger.info('end of processing')
         
