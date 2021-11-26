@@ -101,8 +101,8 @@ def populate_stats():
     
     #print(response2.json())
     # calculate the events recieved
-    total1 = len(response.json())
-    total2 = len(response2.json())
+    total1 =+ len(response.json())
+    total2 =+ len(response2.json())
     logger.info(f'events recieved {total1 + total2}')
     #print(response.json())
     if response.status_code != 200:
@@ -196,3 +196,4 @@ app.add_api("inmotion.yaml", base_path="/processing",strict_validation=True, val
 if __name__ == "__main__":
     init_scheduler()
     app.run(port=8100)
+
