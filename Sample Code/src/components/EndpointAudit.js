@@ -9,7 +9,7 @@ export default function EndpointAudit(props) {
 	const rand_val = Math.floor(Math.random() * 100); // Get a random event from the event store
     // setIndex(rand_val);
     const getAudit = () => {
-        fetch(`audit/${props.endpoint}?index=${rand_val}`)
+        fetch(`nginx/audit/${props.endpoint}?index=${rand_val}`)
             .then(res => res.json())
                 
             .then((result)=>{
